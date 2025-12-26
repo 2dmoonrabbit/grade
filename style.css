@@ -54,15 +54,25 @@ body{background:#000;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto S
 .modal__close{border:0;border-radius:14px;padding:10px 16px;background:#111;color:#fff;font-weight:800;cursor:pointer;}
 
 
+
 /* ===== Mobile-only layout (keeps PC layout unchanged) ===== */
-@media (max-width: 768px){
-  /* Fit by width so the whole scene isn't horizontally cropped.
-     Allow vertical scroll to view the full 2048px-tall composition. */
+@media (max-width: 900px){
+  /* Fit by width and show full art without cropping */
   .stage{
     width: 100vw;
     height: calc(100vw * (2048 / 1638));
     margin: 0;
   }
+  body{
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  /* Make sure layers don't crop on narrow screens */
+  .layer{
+    object-fit: contain !important;
+  }
+}
+
   body{
     overflow-x: hidden;
     overflow-y: auto;
