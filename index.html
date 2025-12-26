@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moon Bunny</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="stage" aria-label="scene">
+    <!-- 배경 -->
+    <img class="layer bg" src="./assets/배경.png" alt="배경" />
+
+    <!-- 캐릭터/오브젝트 레이어 (원본 PNG 그대로 올려서 1번 이미지처럼 맞춤) -->
+    <img class="layer overlay" src="./assets/토끼 2.png" alt="토끼2와 푯말" />
+    <img class="layer overlay" src="./assets/토끼 1.png" alt="토끼1" />
+
+    <!-- 토끼1 클릭 영역 (투명 버튼) -->
+    <button class="hit hit-rabbit1" id="rabbit1Btn" type="button" aria-label="토끼1 클릭">
+      <span class="sr-only">토끼1 클릭</span>
+    </button>
+
+    <!-- 푯말 점수 텍스트 -->
+    <div class="score" id="scoreText" aria-label="평점 점수">-- 점</div>
+  </main>
+
+  <!-- 모달(팝업) -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal__card">
+      <h2 class="modal__title" id="modalTitle">보상 안내</h2>
+      <div class="modal__body">
+        <p>25 점 &gt; 비밀 댓글</p>
+        <p>50 점 &gt; 스티커 상점 ^</p>
+        <p>70 점 &gt; 스티커 상점 ^^</p>
+        <p>100 점 &gt; ???</p>
+        <p>150 점 &gt; 전원 추가 포인트 지급</p>
+      </div>
+      <div class="modal__actions">
+        <button class="modal__close" id="closeModalBtn" type="button">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
