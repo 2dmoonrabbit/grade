@@ -45,9 +45,9 @@ function animateScore(from, to, duration=650){
 }
 
 // ========= 구글 스프레드시트 연동(파싱 최강 버전) =========
-const SHEET_ID   = "여기에_스프레드시트_ID";
+const SHEET_ID   = "1Sb_Gez-NEW-Ps0M-e8LL7jZkf8Qqr9PfNBWvpmjSTE0";
 const SHEET_GID  = "0";
-const CELL_RANGE = "A1";
+const CELL_RANGE = "B2";
 
 function parseToNumber(v){
   if(v === null || v === undefined) return null;
