@@ -11,22 +11,27 @@
     <div class="clock" id="clock">00:00</div>
 
     <img class="layer bg" src="./assets/배경.png" alt="배경" />
-    <img class="layer overlay" src="./assets/토끼 2.png" alt="토끼2" />
+    <img class="layer overlay" src="./assets/토끼 2.png" alt="토끼2와 푯말" />
     <img class="layer overlay" src="./assets/토끼 1.png" alt="토끼1" />
 
-    <button class="hit hit-rabbit1" id="rabbit1Btn"></button>
+    <button class="hit hit-rabbit1" id="rabbit1Btn" aria-label="토끼 클릭"></button>
     <div class="score" id="scoreText">-- 점</div>
   </main>
 
-  <div class="modal" id="modal">
+  <!-- Popup -->
+  <div class="modal" id="modal" aria-hidden="true">
     <div class="modal__card">
-      <h2>평점 보상</h2>
-      <p>25 점 > 비밀 댓글 해금</p>
-      <p>50 점 > 스티커 상점 2 해금</p>
-      <p>70 점 > 스티커 상점 3 해금</p>
-      <p>100 점 > ???</p>
-      <p>150 점 > 전원 추가 포인트 지급</p>
-      <button id="closeModalBtn">닫기</button>
+      <h2 class="modal__title">평점 보상</h2>
+      <div class="modal__body">
+        <p><b>25점</b> · 비밀 댓글</p>
+        <p><b>50점</b> · 스티커 상점 ^</p>
+        <p><b>70점</b> · 스티커 상점 ^^</p>
+        <p><b>100점</b> · ???</p>
+        <p><b>150점</b> · 전원 추가 포인트 지급</p>
+      </div>
+      <div class="modal__actions">
+        <button class="modal__close" id="closeModalBtn">닫기</button>
+      </div>
     </div>
   </div>
 
