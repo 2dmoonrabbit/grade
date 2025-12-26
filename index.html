@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moon Bunny</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="stage">
+    <div class="clock" id="clock">00:00</div>
+
+    <img class="layer bg" src="./assets/배경.png" alt="배경" />
+    <img class="layer overlay" src="./assets/토끼 2.png" alt="토끼2" />
+    <img class="layer overlay" src="./assets/토끼 1.png" alt="토끼1" />
+
+    <button class="hit hit-rabbit1" id="rabbit1Btn"></button>
+    <div class="score" id="scoreText">-- 점</div>
+  </main>
+
+  <div class="modal" id="modal">
+    <div class="modal__card">
+      <h2>평점 보상</h2>
+      <p>25 점 > 비밀 댓글 해금</p>
+      <p>50 점 > 스티커 상점 2 해금</p>
+      <p>70 점 > 스티커 상점 3 해금</p>
+      <p>100 점 > ???</p>
+      <p>150 점 > 전원 추가 포인트 지급</p>
+      <button id="closeModalBtn">닫기</button>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
