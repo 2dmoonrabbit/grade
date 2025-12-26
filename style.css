@@ -52,3 +52,19 @@ body{background:#000;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto S
 .modal__body p{margin:0;padding:10px 12px;border-radius:14px;background:rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.06);font-size:15px;line-height:1.35;}
 .modal__actions{display:flex;justify-content:flex-end;}
 .modal__close{border:0;border-radius:14px;padding:10px 16px;background:#111;color:#fff;font-weight:800;cursor:pointer;}
+
+
+/* ===== Mobile-only layout (keeps PC layout unchanged) ===== */
+@media (max-width: 768px){
+  /* Fit by width so the whole scene isn't horizontally cropped.
+     Allow vertical scroll to view the full 2048px-tall composition. */
+  .stage{
+    width: 100vw;
+    height: calc(100vw * (2048 / 1638));
+    margin: 0;
+  }
+  body{
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
