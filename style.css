@@ -57,24 +57,24 @@ body{background:#000;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto S
 
 /* ===== Mobile-only layout (keeps PC layout unchanged) ===== */
 @media (max-width: 900px){
-  /* Fit by width and show full art without cropping */
+  /* Center the whole art on mobile (top/bottom margins OK) */
+  body{
+    overflow: hidden;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Fit the entire scene within the viewport (no cropping) */
   .stage{
-    width: 100vw;
-    height: calc(100vw * (2048 / 1638));
+    width: min(100vw, calc(100svh * (1638 / 2048)));
+    height: min(100svh, calc(100vw * (2048 / 1638)));
     margin: 0;
   }
-  body{
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-  /* Make sure layers don't crop on narrow screens */
+
+  /* Ensure images never crop inside the stage */
   .layer{
     object-fit: contain !important;
-  }
-}
-
-  body{
-    overflow-x: hidden;
-    overflow-y: auto;
   }
 }
