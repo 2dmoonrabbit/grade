@@ -9,36 +9,27 @@ function updateClock(){
 updateClock();
 setInterval(updateClock, 1000);
 
-// ========= 모달(팝업) =========
+// ========= 모달 =========
 const modal = document.getElementById("modal");
-const rabbit1Btn = document.getElementById("rabbit1Btn");
-const closeModalBtn = document.getElementById("closeModalBtn");
-
-function openModal(){
+document.getElementById("rabbit1Btn").addEventListener("click", () => {
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden","false");
-}
-function closeModal(){
+});
+document.getElementById("closeModalBtn").addEventListener("click", () => {
   modal.classList.remove("is-open");
   modal.setAttribute("aria-hidden","true");
-}
+});
+modal.addEventListener("click", (e)=>{ if(e.target===modal){ modal.classList.remove("is-open"); }});
+window.addEventListener("keydown", (e)=>{ if(e.key==="Escape"){ modal.classList.remove("is-open"); }});
 
-rabbit1Btn.addEventListener("click", openModal);
-closeModalBtn.addEventListener("click", closeModal);
-modal.addEventListener("click", (e)=>{ if(e.target === modal) closeModal(); });
-window.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeModal(); });
-
-// ========= 보상 문구(달성 전엔 ???) =========
+// ========= 보상 문구(달성 전 ???) =========
 function updatePopupRewards(score){
-  const items = document.querySelectorAll(".modal__body p[data-score][data-text]");
-  items.forEach(p => {
+  document.querySelectorAll(".modal__body p[data-score][data-text]").forEach(p => {
     const need = Number(p.dataset.score);
     const text = p.dataset.text || "???";
-    if (Number.isFinite(need) && score >= need) {
-      p.innerHTML = `<b>${need}점</b> · ${text}`;
-    } else if (Number.isFinite(need)) {
-      p.innerHTML = `<b>${need}점</b> · ???`;
-    }
+    p.innerHTML = (score >= need)
+      ? `<b>${need}점</b> · ${text}`
+      : `<b>${need}점</b> · ???`;
   });
 }
 
@@ -49,7 +40,6 @@ let currentScore = null;
 function animateScore(from, to, duration = 650){
   const start = performance.now();
   const diff = to - from;
-
   function tick(now){
     const progress = Math.min((now - start) / duration, 1);
     const value = Math.round(from + diff * progress);
@@ -59,27 +49,25 @@ function animateScore(from, to, duration = 650){
   requestAnimationFrame(tick);
 }
 
-// ========= 구글 스프레드시트 연동 =========
-const SHEET_ID   = "1Sb_Gez-NEW-Ps0M-e8LL7jZkf8Qqr9PfNBWvpmjSTE0";
-const SHEET_NAME = "Sheet1";
-const CELL_RANGE = "B2";
+// ========= 구글 스프레드시트 연동(탭 이름 대신 gid 사용) =========
+const SHEET_ID    = "여기에_스프레드시트_ID";
+const SHEET_GID   = "0";     // 탭 URL에 #gid=0 이면 0
+const CELL_RANGE  = "A1";
 
 function parseToNumber(v){
   if (v === null || v === undefined) return null;
-  const s = String(v).trim();
-  if (!s) return null;
-  const n = Number(s.replace(/[^0-9]/g,""));
+  const n = Number(String(v).replace(/[^0-9]/g,""));
   return Number.isFinite(n) ? n : null;
 }
 
 async function fetchScore(){
   const url =
     `https://docs.google.com/spreadsheets/d/${encodeURIComponent(SHEET_ID)}` +
-    `/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}` +
+    `/gviz/tq?tqx=out:json&gid=${encodeURIComponent(SHEET_GID)}` +
     `&range=${encodeURIComponent(CELL_RANGE)}`;
 
   const res = await fetch(url, { cache: "no-store" });
-  if (!res.ok) throw new Error(`시트 요청 실패: ${res.status}`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
   const text = await res.text();
   const jsonStr = text
@@ -95,13 +83,12 @@ async function fetchScore(){
 
   updatePopupRewards(next);
 
-  if (currentScore === null) {
+  if (currentScore === null){
     currentScore = next;
     scoreText.textContent = `${currentScore} 점`;
     return;
   }
-
-  if (next !== currentScore) {
+  if (next !== currentScore){
     animateScore(currentScore, next);
     currentScore = next;
   }
@@ -111,7 +98,7 @@ async function startScore(){
   try{
     await fetchScore();
   }catch(err){
-    console.error(err);
+    console.error("Sheets error:", err);
     scoreText.textContent = "연동 오류";
   }
 }
