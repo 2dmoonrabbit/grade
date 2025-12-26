@@ -38,7 +38,7 @@ function animateScore(from, to, duration=650){
   const diff = to - from;
   function tick(now){
     const t = Math.min((now-start)/duration, 1);
-    scoreText.textContent = `${Math.round(from + diff*t)} 점`;
+    scoreText.textContent = `${Math.round(from + diff*t)}점`;
     if(t < 1) requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
@@ -95,7 +95,7 @@ async function fetchScore(){
 
   if(currentScore === null){
     currentScore = next;
-    scoreText.textContent = `${currentScore} 점`;
+    scoreText.textContent = `${currentScore}점`;
     return;
   }
   if(next !== currentScore){
