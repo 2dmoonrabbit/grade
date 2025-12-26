@@ -17,9 +17,9 @@ document.getElementById("closeModalBtn").onclick = () => modal.classList.remove(
 // ===== 구글 스프레드시트 연동 =====
 const scoreText = document.getElementById("scoreText");
 
-const SHEET_ID   = "여기에_스프레드시트_ID";
+const SHEET_ID   = "1Sb_Gez-NEW-Ps0M-e8LL7jZkf8Qqr9PfNBWvpmjSTE0";
 const SHEET_NAME = "Sheet1";
-const CELL_RANGE = "A1";
+const CELL_RANGE = "B2";
 
 function formatScore(v){
   if (v === null || v === undefined) return "-- 점";
