@@ -32,8 +32,8 @@ body{background:#000;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto S
 .score{
   position:absolute;
   /* Center of the sign (computed from previous box: left + width/2, top + height/2) */
-  left:71.124540%;
-  top:57.812500%;
+  left:72.3%;
+  top:59.2%;
   transform:translate(-50%,-50%);
 
   /* Give enough width so 3~4 digits stay perfectly centered */
